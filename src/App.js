@@ -81,7 +81,7 @@ const App = () => {
   useEffect(() => {
     // Load tasks from local storage on component mount AND Remove completed tasks on page refresh
     const storedTasks = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-    if (storedTasks.length > 0) {
+    if (storedTasks?.length > 0) {
       const uncompletedTasks = storedTasks.filter((task) => !task.completed);
       setTasks(uncompletedTasks);
     }
@@ -94,6 +94,7 @@ const App = () => {
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
+      event.target.blur();
       addTask();
     }
   };
